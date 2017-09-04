@@ -27,4 +27,8 @@
 `{path: '', redirectTo: 'home', pathMatch: 'full' },`
 相关内容也可参考《Angular 权威教程》 7.5.3 配置路由
 书籍豆瓣介绍：http://www.ituring.com.cn/book/1874
+
+子路由
+`ng g component productDesc`
+`ng g component sellerInfo`
 ```
