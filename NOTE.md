@@ -32,29 +32,22 @@
 ## 子路由
 `ng g component productDesc`
 `ng g component sellerInfo`
->`子路由和路由一样的配置方法，都是声明好路由的入口，路由的路径，路由的出口，不一样的是自路由是嵌套在副路由里面的并且由children表明这是子路由且可以无限循环嵌套。
-路由入口：需要注意的是在子路由的入口处不能再用/来跟路径名，/会告诉angular去找跟组件，就会找到跟组件对应的模块，子路由需要用./`
-### 根路由入口：
->`
-<a [routerLink]="['/']">主页</a>
-
-<a [routerLink]="['/product']" [queryParams]="{id:1}">商品详情</a>
-
-<a [routerLink]="['/home',2]">主页</a>
-`
-
-### 子路由入口：（子路由是./）
->`
-<a [routerLink]="['./']">商品描述</a>
-
-<a [routerLink]="['./seller',99]">商品描述</a>
-`
-
-### 路由出口：
->`<router-outlet></router-outlet>`
-
-### 路由路径：
 ```javascript
+子路由和路由一样的配置方法，都是声明好路由的入口，路由的路径，路由的出口，不一样的是自路由是嵌套在副路由里面的并且由children表明这是子路由且可以无限循环嵌套。
+路由入口：需要注意的是在子路由的入口处不能再用/来跟路径名，/会告诉angular去找跟组件，就会找到跟组件对应的模块，子路由需要用./
+根路由入口：
+`<a [routerLink]="['/']">主页</a>`
+`<a [routerLink]="['/product']" [queryParams]="{id:1}">商品详情</a>`
+`<a [routerLink]="['/home',2]">主页</a>`
+
+子路由入口：（子路由是./）
+`<a [routerLink]="['./']">商品描述</a>`
+`<a [routerLink]="['./seller',99]">商品描述</a>`
+
+路由出口：
+`<router-outlet></router-outlet>`
+
+路由路径：
 const routes:Routes=[
   {path:'',redirectTo:'/home',pathMatch:'full'},
   {path:'product',component:ProductComponent,children:[
@@ -84,3 +77,5 @@ const routes:Routes=[
 当希望跳转辅助路由的同时主路由跳转到指定的组件的时候：可以在入口文件加一个属性：primary,属性的值是需要跳转的主组件的路由路径例如下面点击聊天的同时不管目前在哪个组件下主路由都会跳转回home路径下的组件
 `<a [routerLink]="[{outlets:{primary:home, aux:'chat'}}]">开始聊天</a>`
 ```
+## 路由守卫
+### 相关内容也可参考《Angular 权威教程》 7.11.3 ProtectedComponent 组件和路由守卫
